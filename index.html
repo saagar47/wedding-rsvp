@@ -541,7 +541,7 @@
     // STEP 1: After deploying your Google Apps Script,
     //         replace the placeholder below with your Web App URL.
     // ─────────────────────────────────────────────
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz7S5zMOZgbxLBdEynx0fpN2VILyn--_ZQ4z7n3t70aWfI8UhkAb6Bub-qTb-YjqnHH/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvw8f9Kxhga72qg_xoa9TkPZM1AurTl7r6_Vjjg1yBMzDgUF7E77hV0V-A8SuL_u5P/exec';
 
     document.getElementById('rsvpForm').addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -568,7 +568,7 @@
         await fetch(SCRIPT_URL, {
           method:  'POST',
           mode:    'no-cors',   // required for Apps Script cross-origin requests
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain' },
           body:    JSON.stringify({ name, phone, guests, events: events.join(', ') })
         });
 
