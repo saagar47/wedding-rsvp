@@ -104,6 +104,8 @@
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--warm-mid);
+      text-align: center;
+      line-height: 2.2;
     }
 
     /* ── SHARED ── */
@@ -135,7 +137,7 @@
     /* ── EVENTS GRID ── */
     .events-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -276,19 +278,59 @@
     .ev-label {
       display: flex;
       flex-direction: column;
-      padding: 16px;
+      padding: 16px 16px 16px 44px;
       border: 1px solid var(--border);
       background: var(--ivory);
       cursor: pointer;
       transition: background 0.18s, border-color 0.18s;
       user-select: none;
+      position: relative;
     }
     .ev-label:hover { border-color: var(--maroon); }
+
+    /* custom checkbox box */
+    .ev-label::before {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--border);
+      background: var(--ivory);
+      transition: background 0.18s, border-color 0.18s;
+      flex-shrink: 0;
+    }
+
+    /* checkmark tick */
+    .ev-label::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 50%;
+      transform: translateY(-60%) rotate(45deg);
+      width: 5px;
+      height: 9px;
+      border-right: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.18s;
+    }
 
     .ev-check:checked + .ev-label {
       background: var(--maroon);
       border-color: var(--maroon);
       color: var(--ivory);
+    }
+
+    .ev-check:checked + .ev-label::before {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .ev-check:checked + .ev-label::after {
+      border-right-color: #fff;
+      border-bottom-color: #fff;
     }
 
     .ev-check:checked + .ev-label .ec-date { color: rgba(253,250,245,0.6); }
@@ -392,7 +434,10 @@
 
     <span class="hero-hibiscus">🌺</span>
 
-    <p class="hero-date">1st &nbsp;·&nbsp; 2nd &nbsp;·&nbsp; 3rd May 2026 &nbsp;&nbsp;·&nbsp;&nbsp; Lonavala</p>
+    <p class="hero-date">
+      2nd &nbsp;·&nbsp; 3rd May<br>
+      2026 &nbsp;·&nbsp; Lonavala
+    </p>
   </section>
 
   <!-- ── THE CELEBRATIONS ── -->
@@ -401,32 +446,22 @@
       <div class="section-label">The Celebrations</div>
       <div class="events-grid">
         <div class="event-card">
-          <div class="event-date-tag">1st May 2026</div>
-          <div class="event-name">Haldi</div>
-          <div class="event-time">Morning</div>
-        </div>
-        <div class="event-card">
-          <div class="event-date-tag">1st May 2026</div>
-          <div class="event-name">Tilak</div>
-          <div class="event-time">Afternoon</div>
-        </div>
-        <div class="event-card">
-          <div class="event-date-tag">2nd May 2026</div>
+          <div class="event-date-tag">Day 1 &nbsp;·&nbsp; 2nd May 2026</div>
           <div class="event-name">Carnival</div>
           <div class="event-time">Morning</div>
         </div>
         <div class="event-card">
-          <div class="event-date-tag">2nd May 2026</div>
+          <div class="event-date-tag">Day 1 &nbsp;·&nbsp; 2nd May 2026</div>
           <div class="event-name">Sangeet</div>
           <div class="event-time">Evening</div>
         </div>
         <div class="event-card">
-          <div class="event-date-tag">3rd May 2026</div>
+          <div class="event-date-tag">Day 2 &nbsp;·&nbsp; 3rd May 2026</div>
           <div class="event-name">Shaadi</div>
           <div class="event-time">Morning</div>
         </div>
         <div class="event-card">
-          <div class="event-date-tag">3rd May 2026</div>
+          <div class="event-date-tag">Day 2 &nbsp;·&nbsp; 3rd May 2026</div>
           <div class="event-name">Sufi Night</div>
           <div class="event-time">Night</div>
         </div>
@@ -479,44 +514,30 @@
           <label class="form-label">Events You Will Attend</label>
           <div class="events-check-grid">
 
-            <input type="checkbox" class="ev-check" id="ev-haldi" value="Haldi (1st May)">
-            <label class="ev-label" for="ev-haldi">
-              <span class="ec-date">1st May</span>
-              <span class="ec-name">Haldi</span>
-              <span class="ec-time">Morning</span>
-            </label>
-
-            <input type="checkbox" class="ev-check" id="ev-tilak" value="Tilak (1st May)">
-            <label class="ev-label" for="ev-tilak">
-              <span class="ec-date">1st May</span>
-              <span class="ec-name">Tilak</span>
-              <span class="ec-time">Afternoon</span>
-            </label>
-
-            <input type="checkbox" class="ev-check" id="ev-carnival" value="Carnival (2nd May, Morning)">
+            <input type="checkbox" class="ev-check" id="ev-carnival" value="Carnival (Day 1 · 2nd May, Morning)">
             <label class="ev-label" for="ev-carnival">
-              <span class="ec-date">2nd May</span>
+              <span class="ec-date">Day 1 · 2nd May</span>
               <span class="ec-name">Carnival</span>
               <span class="ec-time">Morning</span>
             </label>
 
-            <input type="checkbox" class="ev-check" id="ev-sangeet" value="Sangeet (2nd May, Evening)">
+            <input type="checkbox" class="ev-check" id="ev-sangeet" value="Sangeet (Day 1 · 2nd May, Evening)">
             <label class="ev-label" for="ev-sangeet">
-              <span class="ec-date">2nd May</span>
+              <span class="ec-date">Day 1 · 2nd May</span>
               <span class="ec-name">Sangeet</span>
               <span class="ec-time">Evening</span>
             </label>
 
-            <input type="checkbox" class="ev-check" id="ev-shaadi" value="Shaadi (3rd May, Morning)">
+            <input type="checkbox" class="ev-check" id="ev-shaadi" value="Shaadi (Day 2 · 3rd May, Morning)">
             <label class="ev-label" for="ev-shaadi">
-              <span class="ec-date">3rd May</span>
+              <span class="ec-date">Day 2 · 3rd May</span>
               <span class="ec-name">Shaadi</span>
               <span class="ec-time">Morning</span>
             </label>
 
-            <input type="checkbox" class="ev-check" id="ev-sufi" value="Sufi Night (3rd May, Night)">
+            <input type="checkbox" class="ev-check" id="ev-sufi" value="Sufi Night (Day 2 · 3rd May, Night)">
             <label class="ev-label" for="ev-sufi">
-              <span class="ec-date">3rd May</span>
+              <span class="ec-date">Day 2 · 3rd May</span>
               <span class="ec-name">Sufi Night</span>
               <span class="ec-time">Night</span>
             </label>
